@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f4f5fb"><meta name="description" content="StudyFlow — your personal smart study companion">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./assets/icon-192.png"><link rel="stylesheet" href="./css/app.css">
+<title>StudyFlow — Smart Study Planner</title>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar glass">
+  <a class="brand" href="#" aria-label="StudyFlow home"><span class="brand-logo">S</span><span><b>StudyFlow</b><small>Study with intention.</small></span></a>
+  <div class="profile-card"><div class="avatar" id="avatar">A</div><div class="profile-meta"><b id="profileName">Ashraful</b><small id="profileMeta">Class 10 · SSC 2027</small></div><button class="icon-button tiny" data-action="profile" aria-label="Edit profile">•••</button></div>
+  <nav class="nav" aria-label="Main navigation">
+    <button class="nav-link active" data-page="dashboard"><span>⌂</span><label data-i18n="dashboard">Dashboard</label></button>
+    <button class="nav-link" data-page="planner"><span>▦</span><label data-i18n="planner">Study planner</label></button>
+    <button class="nav-link" data-page="calendar"><span>▣</span><label data-i18n="calendar">Calendar</label></button>
+    <button class="nav-link" data-page="focus"><span>◷</span><label data-i18n="focus">Focus mode</label></button>
+    <button class="nav-link" data-page="subjects"><span>▤</span><label data-i18n="subjects">Subjects & books</label></button>
+    <button class="nav-link" data-page="alarms"><span>♧</span><label data-i18n="alarms">Alarm center</label></button>
+    <button class="nav-link" data-page="reports"><span>▥</span><label data-i18n="reports">Reports</label></button>
+  </nav>
+  <div class="sidebar-bottom"><button class="nav-link" data-page="settings"><span>⚙</span><label data-i18n="settings">Settings</label></button><div class="sidebar-foot">Small steps. Strong results.</div></div>
+</aside>
+<main class="main">
+<header class="topbar"><div><div class="eyebrow" id="todayStamp"></div><h1 id="greeting">Good morning, Ashraful <span>✦</span></h1><p class="muted" data-i18n="greetingSub">Your progress is built one session at a time.</p></div><div class="top-actions"><button class="icon-button" id="themeQuick" aria-label="Toggle theme">☼</button><button class="language-pill" id="languageQuick">EN</button><button class="avatar small" data-action="profile" id="topAvatar">A</button></div></header>
+
+<section class="page active" id="page-dashboard">
+  <div class="hero">
+    <div class="hero-text"><span class="eyebrow light">YOUR DAILY MOMENTUM</span><h2>Make today<br><em>count.</em></h2><p>A little progress every day adds up to remarkable results.</p><button class="button white" data-go="planner">Plan my day <span>→</span></button></div>
+    <div class="hero-visual"><div class="hero-ring ring-a"></div><div class="hero-ring ring-b"></div><div class="hero-score"><span>✦</span><b id="heroPercent">0%</b><small>DAILY GOAL</small></div><i class="spark spark-a">✧</i><i class="spark spark-b">✦</i></div>
+    <div class="hero-foot"><span>◷ <b id="heroActual">0m</b> focused today</span><span>◎ <b id="heroTasks">0</b> tasks completed</span></div>
+  </div>
+  <div class="section-heading"><div><div class="eyebrow">YOUR OVERVIEW</div><h2 data-i18n="todayOverview">Today at a glance</h2></div><button class="text-button" data-go="reports" data-i18n="viewReports">View reports →</button></div>
+  <div class="stats-grid">
+    <article class="stat glass"><span class="stat-icon purple">◷</span><small data-i18n="plannedTime">Planned time</small><b id="statPlanned">0h 00m</b><span class="muted" data-i18n="scheduledSessions">Across your sessions</span></article>
+    <article class="stat glass"><span class="stat-icon green">✓</span><small data-i18n="tasksDone">Tasks completed</small><b id="statTasks">0 / 0</b><span class="positive" id="statRemaining">Nothing pending</span></article>
+    <article class="stat glass"><span class="stat-icon amber">⚡</span><small data-i18n="actualStudy">Actual study</small><b id="statActual">0m</b><span class="muted" data-i18n="trackedFocus">Tracked focus time</span></article>
+  </div>
+  <div class="dashboard-grid">
+    <section class="panel glass"><div class="panel-head"><div><div class="eyebrow">UP NEXT</div><h3 data-i18n="todaysSchedule">Today's schedule</h3></div><button class="mini-link" data-go="planner" data-i18n="seeAll">See all</button></div><div id="dashboardTasks" class="timeline"></div></section>
+    <section class="panel glass"><div class="panel-head"><div><div class="eyebrow">KEEP GROWING</div><h3 data-i18n="subjectProgress">Subject progress</h3></div><button class="mini-link" data-go="subjects" data-i18n="details">Details</button></div><div id="dashboardSubjects" class="subject-progress"></div></section>
+  </div>
+  <div class="insight-card"><span class="insight-icon">✧</span><div><b data-i18n="smartInsight">A helpful next step</b><p id="smartInsightText">Add your first study task to get a personalized suggestion.</p></div><button data-go="planner" data-i18n="openPlanner">Open planner →</button></div>
+</section>
+
+<section class="page" id="page-planner">
+  <div class="section-heading"><div><div class="eyebrow">BUILD YOUR ROUTINE</div><h2 data-i18n="studyPlanner">Study planner</h2><p class="muted" data-i18n="plannerSub">Plan realistically. Track honestly.</p></div><button class="button primary" data-action="add-task">＋ <span data-i18n="addTask">Add task</span></button></div>
+  <div class="date-toolbar panel glass"><label><span data-i18n="selectDate">Select date</span><input type="date" id="plannerDate"></label><div class="time-totals"><span><small data-i18n="available">AVAILABLE</small><b id="availableMinutes">6h 00m</b></span><span><small data-i18n="scheduled">SCHEDULED</small><b id="scheduledMinutes">0m</b></span><span><small data-i18n="free">FREE</small><b id="freeMinutes">6h 00m</b></span></div></div>
+  <div id="overlapWarning" class="warning hidden" role="status"></div>
+  <div class="panel glass"><div class="panel-head"><h3 data-i18n="plannedSessions">Planned sessions</h3><span class="pill" id="taskCount">0 tasks</span></div><div id="plannerTasks" class="task-list"></div></div>
+  <div class="panel glass carry-panel"><div class="panel-head"><div><div class="eyebrow">SMART CARRYOVER</div><h3 data-i18n="unfinishedWork">Unfinished work</h3></div></div><div id="carryoverList"></div></div>
+</section>
+
+<section class="page" id="page-calendar">
+  <div class="section-heading"><div><div class="eyebrow">SEE THE BIG PICTURE</div><h2 data-i18n="calendar">Calendar</h2></div><div class="segmented"><button class="active" data-calendar-view="week">Week</button><button data-calendar-view="month">Month</button></div></div>
+  <div class="panel glass"><div class="calendar-head"><button class="icon-button" id="calPrev">‹</button><h3 id="calendarTitle"></h3><button class="icon-button" id="calNext">›</button></div><div id="calendarGrid" class="calendar-grid"></div></div>
+  <div class="panel glass"><div class="panel-head"><h3 data-i18n="selectedDateTasks">Selected date tasks</h3><button class="mini-link" data-action="add-task" data-i18n="addTask">＋ Add task</button></div><div id="calendarTasks" class="task-list"></div></div>
+</section>
+
+<section class="page" id="page-focus">
+  <div class="focus-layout"><div class="eyebrow">DEEP WORK, YOUR WAY</div><h2 data-i18n="focusTitle">Focus on what matters.</h2><p class="muted" data-i18n="focusSub">One session. One goal. Your best effort.</p>
+  <div class="focus-card glass"><div class="focus-config"><label><span data-i18n="focusSubject">FOCUS SUBJECT</span><select id="focusSubject"></select></label><label><span data-i18n="linkTask">LINK A TASK</span><select id="focusTask"><option value="">No linked task</option></select></label></div>
+    <div class="timer-ring" id="timerRing"><div><strong id="timerDisplay">25:00</strong><small id="timerStatus">READY WHEN YOU ARE</small></div></div>
+    <div class="presets"><button class="preset active" data-minutes="25">25 min</button><button class="preset" data-minutes="45">45 min</button><button class="preset" data-minutes="60">60 min</button><button class="preset" data-minutes="custom" data-i18n="custom">Custom</button></div>
+    <div class="timer-controls"><button class="button primary" id="timerToggle" data-i18n="startFocus">Start focus</button><button class="button secondary" id="timerFinish">Finish &amp; save</button><button class="button secondary" id="timerReset" data-i18n="reset">Reset</button></div>
+    <p class="muted tiny-center" data-i18n="pausedNotCounted">Paused time is not counted as active study time.</p>
+  </div></div>
+</section>
+
+<section class="page" id="page-subjects">
+  <div class="section-heading"><div><div class="eyebrow">YOUR LEARNING LIBRARY</div><h2 data-i18n="subjectsBooks">Subjects & books</h2><p class="muted" data-i18n="librarySub">Organize subjects, books, chapters and topics.</p></div><button class="button primary" data-action="add-subject">＋ <span data-i18n="addSubject">Add subject</span></button></div>
+  <div id="subjectCards" class="subject-cards"></div>
+</section>
+
+<section class="page" id="page-alarms">
+  <div class="section-heading"><div><div class="eyebrow">GENTLE REMINDERS</div><h2 data-i18n="alarmCenter">Alarm center</h2><p class="muted" data-i18n="alarmSub">Keep your planned sessions in sight.</p></div><button class="button primary" data-action="add-alarm">＋ <span data-i18n="newAlarm">New alarm</span></button></div>
+  <div class="notice"><span>ⓘ</span><p><b data-i18n="pwaReminderTitle">PWA reminder limitations</b><br><span data-i18n="pwaReminderBody">Notifications are best-effort. A static PWA cannot guarantee exact alarms when fully closed or restricted by Android battery controls. Keep the app/browser allowed to run for better reliability.</span></p><button id="notificationPermission" class="text-button" data-i18n="enableNotifications">Enable notifications</button></div>
+  <div class="panel glass next-alarm"><small data-i18n="nextReminder">NEXT ENABLED REMINDER</small><b id="nextAlarm">No reminder scheduled</b></div>
+  <div id="alarmCards" class="alarm-list"></div>
+</section>
+
+<section class="page" id="page-reports">
+  <div class="section-heading"><div><div class="eyebrow">PROGRESS, NOT PRESSURE</div><h2 data-i18n="reports">Reports</h2><p class="muted" data-i18n="reportsSub">Understand your rhythm and adjust gently.</p></div><button class="button secondary" data-action="export-report" data-i18n="exportReport">Export report</button></div>
+  <div class="report-summary glass"><div><small data-i18n="weeklyStudyTime">WEEKLY STUDY TIME</small><b id="weeklyActual">0h 00m</b><span id="weeklyComparison" class="muted">Based on recorded focus sessions</span></div><div class="goal-ring" id="weeklyRing"><b id="weeklyPercent">0%</b><small data-i18n="weeklyGoal">WEEKLY GOAL</small></div></div>
+  <div class="report-grid"><div class="panel glass"><div class="panel-head"><h3 data-i18n="dailyFocusTime">Daily focus time</h3><small class="muted">Minutes</small></div><div id="weeklyChart" class="bar-chart"></div></div><div class="panel glass"><div class="panel-head"><h3 data-i18n="subjectBreakdown">Subject breakdown</h3></div><div id="subjectBreakdown"></div></div></div>
+  <div class="panel glass"><div class="panel-head"><h3 data-i18n="dailySummary">Daily summary</h3><input type="date" id="reportDate"></div><div id="dailyReport"></div></div>
+</section>
+
+<section class="page" id="page-settings">
+  <div class="section-heading"><div><div class="eyebrow">MAKE IT YOURS</div><h2 data-i18n="settings">Settings</h2><p class="muted" data-i18n="settingsSub">Your preferences, your study space.</p></div></div>
+  <div class="settings-card glass">
+    <div class="setting-row"><div><b data-i18n="language">Interface language</b><small data-i18n="languageSub">Choose from 10 widely used languages</small></div><select id="languageSelect"></select></div>
+    <div class="setting-row"><div><b data-i18n="appearance">Appearance</b><small data-i18n="appearanceSub">Light, dark or follow device</small></div><select id="themeSelect"><option value="system" data-i18n="system">System</option><option value="light" data-i18n="light">Light</option><option value="dark" data-i18n="dark">Dark</option></select></div>
+    <div class="setting-row"><div><b data-i18n="studentProfile">Student profile</b><small id="settingsProfile">Class 10 · SSC 2027 · Science · Bangladesh · NCTB</small></div><button class="button secondary" data-action="profile" data-i18n="edit">Edit</button></div>
+    <div class="setting-row"><div><b data-i18n="dailyGoal">Daily study goal</b><small data-i18n="dailyGoalSub">Your target in minutes</small></div><input id="dailyGoalInput" type="number" min="15" max="1440" step="15"></div>
+    <div class="setting-row"><div><b data-i18n="weeklyGoalSetting">Weekly goal</b><small data-i18n="weeklyGoalSub">Target focused minutes per week</small></div><input id="weeklyGoalInput" type="number" min="60" max="10080" step="30"></div>
+    <div class="setting-row"><div><b data-i18n="backup">Backup data</b><small data-i18n="backupSub">Download a JSON copy of your local data</small></div><button class="button secondary" data-action="backup" data-i18n="exportJson">Export JSON</button></div>
+    <div class="setting-row"><div><b data-i18n="restore">Restore data</b><small data-i18n="restoreSub">Import a previously exported StudyFlow backup</small></div><button class="button secondary" data-action="restore" data-i18n="importJson">Import JSON</button><input type="file" id="restoreFile" accept="application/json" hidden></div>
+    <div class="setting-row"><div><b data-i18n="installApp">Install app</b><small data-i18n="installSub">Add StudyFlow to your Android home screen</small></div><button class="button secondary" id="installButton" data-i18n="install">Install</button></div>
+    <div class="setting-row danger-row"><div><b data-i18n="resetData">Reset all local data</b><small data-i18n="resetSub">This permanently deletes this device's StudyFlow data</small></div><button class="button danger" data-action="reset" data-i18n="reset">Reset</button></div>
+  </div>
+  <p class="privacy-note" data-i18n="privacyNote">Your study data is stored on this device. It does not automatically sync to other devices. Export a backup before clearing browser data.</p>
+</section>
+<footer>StudyFlow <span>·</span> Your personal study companion <span>·</span> v1.0</footer>
+</main>
+</div>
+<nav class="mobile-nav" aria-label="Mobile navigation"><button data-page="dashboard" class="active">⌂<small data-i18n="dashboard">Home</small></button><button data-page="planner">▦<small data-i18n="planner">Plan</small></button><button data-page="focus">◷<small data-i18n="focus">Focus</small></button><button data-page="subjects">▤<small data-i18n="subjects">Subjects</small></button><button data-page="settings">⚙<small data-i18n="settings">More</small></button></nav>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal glass"><div class="modal-header"><h3 id="modalTitle">Add study task</h3><button class="icon-button" data-action="close-modal" aria-label="Close">×</button></div><div id="modalContent"></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="module" src="./js/app.js"></script>
+</body></html>
